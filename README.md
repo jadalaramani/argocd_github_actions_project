@@ -1,2 +1,1 @@
-# argocd_github_actions_project
-argocd_github_actions_project
+
