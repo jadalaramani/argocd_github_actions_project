@@ -85,4 +85,4 @@ jobs:
       - name: Trigger ArgoCD Sync
         run: |
           argocd login ${{ secrets.ARGOCD_SERVER }} --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
-          argocd app sync my-app
+          argocd app sync myapp
