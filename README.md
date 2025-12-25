@@ -34,6 +34,23 @@ In **Repository → Settings → Secrets and variables → Actions → New repos
 | `ARGOCD_SERVER`   | `<LoadBalancer-IP or hostname>` |
 | `ARGOCD_PASSWORD` | Argo CD admin password          |
 
+## Cluster setup
+```
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+kubectl version --short --client
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+```
+
+## Argocd Setup
+kubectl create namespace argocd 
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}' 
+kubectl get svc argocd-server -n argocd 
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d ; echo 
 
 
 ## 4️⃣ Enable Workflow Write Access
