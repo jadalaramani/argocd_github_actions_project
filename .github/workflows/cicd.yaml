@@ -24,7 +24,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
+      - name: Install Maven
+        run: |
+          sudo yum install maven -y
 
       # Maven Build
       - name: Build with Maven
