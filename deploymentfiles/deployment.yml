@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: webcont
-          image: ramanijadala/webapp:13
+          image: devopshubg333/webapp:8
+
           ports:
             - containerPort: 8080
 ---
