@@ -11,7 +11,7 @@ jobs:
 
     env:
       REGISTRY: docker.io
-      IMAGE_NAME: ramanijadala/webapp
+      IMAGE_NAME: devopshubg333/webapp
 
     steps:
       # Checkout
@@ -30,7 +30,7 @@ jobs:
 
       # Maven Build
       - name: Build with Maven
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       # Docker Buildx
       - name: Set up Docker Buildx
@@ -85,4 +85,4 @@ jobs:
       - name: Trigger ArgoCD Sync
         run: |
           argocd login ${{ secrets.ARGOCD_SERVER }} --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
-          argocd app sync myapp
+          argocd app sync prodapp
